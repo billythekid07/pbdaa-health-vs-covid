@@ -1,0 +1,28 @@
+Steps for Ingesting Healthy Diet Dataset into Hive
+
+Go to https://www.kaggle.com/mariaren/covid19-healthy-diet-dataset and download the Food_Supply_kcal_Data.csv dataset.
+
+Use “scp” command to copy dataset to Dumbo.
+
+Use “hdfs -put” command to add file to HDFS.
+
+Write MapReduce program (attached in the submission) to parse values within the healthy diet dataset to create a new csv. This step involves only a Map task that reads the dataset, normalizes the data, aggregates the data into master groups, and writes the data into a comma delimited file, stored in HDFS.
+
+Use “scp” command to move *.java files to Dumbo.
+
+Use “javac” command to create class files, and use “jar -cvf” command to compile the Java MapReduce program.
+
+Use “hadoop jar” command to run the job, specifying input directory as previosly added dataset in HDFS and output directory to store the comma delimited file.
+
+Connect to Hive using Beeline
+
+Create external table using the following command:
+
+create external table healthy_diet
+(country string, alcohol_percentage float, protein_percentage float, 
+grains_percentage float, fruits_percentage float, vegetables_percentage float, 
+dairy_percentage float, fats_percentage float, sugars_percentage float, 
+other_percentage float, products_ratio float, fats_ratio float, 
+obesity_rate float, undernourished_rate float)
+row format delimited fields terminated by ','
+location '/user/wwh237/class8/healthy-diet';
