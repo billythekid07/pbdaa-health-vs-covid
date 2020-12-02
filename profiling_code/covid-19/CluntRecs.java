@@ -1,5 +1,3 @@
-
-import hadoop_test.Utils_hadoop;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
@@ -21,14 +19,13 @@ public class CluntRecs {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongWritable.class);
 
+        job.setNumReduceTasks(1);
         job.setReducerClass(CluntRecsReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
 //        input file
         FileInputFormat.setInputPaths(job, new Path("data//CleanResult//part-r-00000"));
 
-        if( Utils_hadoop.testExist(conf,"data//CluntRecsResult2")){
-            Utils_hadoop.rmDir(conf,"data//CluntRecsResult2");}
         FileOutputFormat.setOutputPath(job, new Path("data//CluntRecsResult2"));
         job.waitForCompletion(true);
 
