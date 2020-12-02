@@ -39,4 +39,26 @@ Follow the steps described in the pdf which is located at "/data_ingest/covid-19
 
 4. To get the cleaned version of World Happiness data, you can follow Charlie's Data Cleaning Step to get it. I personally get the data from him via email, but eventually this data is renamed by me to "happiness2019.csv" and put to HDFS under the directory "user/NetID/pbdaa_project/Input1".  
 
-5. Follow the steps described in "/ana_code/analytics_YuejiaTong.pdf" to conduct the analytics. We end with 8 plots.  
+5. Follow the steps described in "/ana_code/analytics_YuejiaTong.pdf" to conduct the analytics. We end with 8 plots.
+
+**#### William Huang Final Project Steps:**
+IMPORTANT: In addition to my dataset, my analytics will also require a secondary dataset. Please follow the data ingest and ETL instructions under “/covid-19” to obtain and reproduce the national covid-19 dataset.
+
+1. Data ingestion.  
+Follow the steps described in the pdf which is located at "/data_ingest/healthy_diet/steps_to_ingest.pdf" to get access the data, and put it on HDFS under the directory "user/NetID".
+
+2. Data Cleaning  
+    a. Use scp to transfer the source codes (located at "/etl_code/healthy_diet/") from local laptop to NYU Dumbo.  
+    b. Now compile the source code to run the MapReduce programs by typing following commands:  
+        i. java -version  
+        ii. yarn classpath  
+        iii. javac -classpath `yarn classpath` -d . *.java
+        vi. jar -cvf Clean.jar *.class
+        vii. hadoop jar Clean.jar WorldFoodConsumption /user/wwh237/class8/Food_Supply_kcal_Data.csv /user/NetID/class8/output  
+	c. The result data is just the "part-r-00000" file which will be used later, and it is located under the directory "output".    
+
+3. Profiling the dataset. The steps are similar to Data cleaning, and the source codes reside in the location "/profiling_code/healthy-diet".
+
+4. To get the cleaned version of Covid-19 data, you can follow Yuejia Tong's data cleaning procedure.
+
+5. Follow the steps described in "/ana_code/analytics_WilliamHuang.docx" to perform the analytics. We end with 8 plots.
