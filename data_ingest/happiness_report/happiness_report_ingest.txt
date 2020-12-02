@@ -1,4 +1,4 @@
 1.	Go to https://www.kaggle.com/unsdsn/world-happiness 
 2.	Download zip folder and extract. We are only using the 2019.csv data.
 3.	Use “scp” command to bring “2019.csv” into dumbo. 
-4.	Use “hdfs dfs -put” to place “2019.csv” into HDFS
+4.	Use “hdfs dfs -put” to place “2019.csv” into HDFS. Place it in a directory called FinalProject.
