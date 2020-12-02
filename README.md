@@ -33,7 +33,7 @@ Follow the steps described in the pdf which is located at "/data_ingest/covid-19
         v. javac -classpath `yarn classpath`:. -d . Clean.java  
         vi. jar -cvf Clean.jar *.class  
         vii. hadoop jar Clean.jar Clean /user/NetID/country_wise_latest.csv /user/NetID/CleanResult  
-	c. The result data is just the "part-r-00000" file which will be used later.  
+	c. The result data is just the "part-r-00000" file which will be used later, and it is located under the directory "CleanResult".    
 
 3. Profiling the dataset. The steps are similar to Data cleaning, and the source codes reside in the location "/profiling_code/covid-19".  
 
