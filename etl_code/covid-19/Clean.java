@@ -1,6 +1,3 @@
-
-
-import hadoop_test.Utils_hadoop;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -17,7 +14,7 @@ public class Clean {
         Job job = Job.getInstance(conf);
         job.setJarByClass(Clean.class);
         // mapper
-
+        job.setNumReduceTasks(1);
         job.setMapperClass(CleanMapper.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Text.class);
@@ -26,13 +23,10 @@ public class Clean {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 //        input file
-        FileInputFormat.setInputPaths(job, new Path("data//country_wise_latest.csv"));
+        FileInputFormat.setInputPaths(job, new Path("country_wise_latest.csv"));
 
-        if( Utils_hadoop.testExist(conf,"data//CleanResult")){
-            Utils_hadoop.rmDir(conf,"data//CleanResult");}
-        FileOutputFormat.setOutputPath(job, new Path("data//CleanResult"));
+        FileOutputFormat.setOutputPath(job, new Path("CleanResult"));
         job.waitForCompletion(true);
-
 
     }
 }
